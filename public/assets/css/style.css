@@ -1,0 +1,590 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary-red: #ff1647;
+    --secondary-red: #cc1138;
+    --dark-red: #990d2b;
+    --dark-bg: #0f1419;
+    --darker-bg: #0a0d11;
+    --card-bg: #1a1f28;
+    --card-elevated: #252b36;
+    --text-primary: #ffffff;
+    --text-secondary: #8b93a7;
+    --border-color: rgba(255, 22, 71, 0.15);
+    --gradient-red: linear-gradient(135deg, #ff1647 0%, #cc1138 100%);
+    --gradient-red-hover: linear-gradient(135deg, #ff2d5c 0%, #d91f47 100%);
+    --gradient-dark: linear-gradient(180deg, #1a1f28 0%, #131822 100%);
+    --gradient-card: linear-gradient(145deg, #1e242e 0%, #181d26 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--dark-bg);
+    background-image: 
+        radial-gradient(ellipse at top, rgba(255, 22, 71, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(255, 22, 71, 0.05) 0%, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== NEUMORPHISM + GRADIENTES ========== */
+
+.neomorph-card {
+    background: var(--gradient-card);
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid rgba(255, 22, 71, 0.1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.neomorph-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 22, 71, 0.3), transparent);
+}
+
+.neomorph-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 22, 71, 0.2);
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 22, 71, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.neomorph-inset {
+    background: var(--darker-bg);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(255, 22, 71, 0.08);
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.5),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.02);
+}
+
+/* ========== BOTÕES COM GRADIENTE ========== */
+
+.neomorph-button {
+    background: var(--gradient-dark);
+    border: 1px solid rgba(255, 22, 71, 0.15);
+    border-radius: 10px;
+    padding: 12px 24px;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.neomorph-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 22, 71, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.neomorph-button:hover::before {
+    left: 100%;
+}
+
+.neomorph-button:hover {
+    border-color: rgba(255, 22, 71, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.neomorph-button-primary {
+    background: var(--gradient-red);
+    border: 1px solid rgba(255, 22, 71, 0.3);
+    border-radius: 10px;
+    padding: 12px 28px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 16px rgba(255, 22, 71, 0.25),
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.neomorph-button-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.neomorph-button-primary:hover {
+    background: var(--gradient-red-hover);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 24px rgba(255, 22, 71, 0.35),
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.neomorph-button-primary:hover::after {
+    opacity: 1;
+}
+
+.neomorph-button-primary:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 8px rgba(255, 22, 71, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== NAVBAR COM GRADIENTE ========== */
+
+.navbar {
+    background: var(--gradient-dark) !important;
+    backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 22, 71, 0.15);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--gradient-red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 12px rgba(255, 22, 71, 0.3));
+    transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+    filter: drop-shadow(0 0 20px rgba(255, 22, 71, 0.5));
+    transform: scale(1.03);
+}
+
+.nav-link {
+    color: var(--text-secondary) !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 16px !important;
+    margin: 0 4px;
+    border-radius: 8px;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-red);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary-red) !important;
+    background: rgba(255, 22, 71, 0.08);
+}
+
+.nav-link:hover::before {
+    width: 60%;
+}
+
+/* ========== CARDS DE SORTEIO ========== */
+
+.raffle-card {
+    background: var(--gradient-card);
+    border: 1px solid rgba(255, 22, 71, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.raffle-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-red);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.raffle-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 22, 71, 0.25);
+    box-shadow: 
+        0 16px 48px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 22, 71, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.raffle-card:hover::before {
+    opacity: 1;
+}
+
+.raffle-card-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.raffle-card:hover .raffle-card-img {
+    transform: scale(1.08);
+}
+
+.raffle-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.raffle-badge.free {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.9), rgba(22, 163, 74, 0.9));
+    box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
+}
+
+.raffle-badge.paid {
+    background: var(--gradient-red);
+    box-shadow: 0 4px 16px rgba(255, 22, 71, 0.4);
+}
+
+/* ========== FORMS COM GRADIENTE ========== */
+
+.form-control {
+    background: var(--darker-bg) !important;
+    border: 1px solid rgba(255, 22, 71, 0.12) !important;
+    border-radius: 10px !important;
+    color: #ffffff !important;
+    padding: 13px 16px !important;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.form-control:focus {
+    background: var(--darker-bg) !important;
+    border-color: var(--primary-red) !important;
+    color: #ffffff !important;
+    box-shadow: 
+        inset 0 2px 6px rgba(0, 0, 0, 0.3),
+        0 0 0 3px rgba(255, 22, 71, 0.15),
+        0 0 20px rgba(255, 22, 71, 0.1) !important;
+}
+
+.form-control::placeholder {
+    color: #5a6275 !important;
+}
+
+.form-label {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+/* ========== BADGES COM GRADIENTE ========== */
+
+.badge {
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bg-success {
+    background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+}
+
+.bg-danger {
+    background: var(--gradient-red) !important;
+    box-shadow: 0 2px 8px rgba(255, 22, 71, 0.3);
+}
+
+.bg-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.bg-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* ========== ALERTS COM GRADIENTE ========== */
+
+.alert {
+    border: none !important;
+    border-radius: 12px !important;
+    border-left: 4px solid !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(22, 163, 74, 0.1)) !important;
+    color: #4ade80 !important;
+    border-left-color: #22c55e !important;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.1)) !important;
+    color: #f87171 !important;
+    border-left-color: #ef4444 !important;
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.1)) !important;
+    color: #fbbf24 !important;
+    border-left-color: #f59e0b !important;
+}
+
+.alert-info {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.1)) !important;
+    color: #60a5fa !important;
+    border-left-color: #3b82f6 !important;
+}
+
+/* ========== PAGINAÇÃO ========== */
+
+.pagination {
+    gap: 8px;
+}
+
+.page-item .page-link {
+    background: var(--gradient-dark) !important;
+    border: 1px solid rgba(255, 22, 71, 0.12) !important;
+    border-radius: 8px !important;
+    color: var(--text-secondary) !important;
+    padding: 10px 16px !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.page-item .page-link:hover {
+    background: rgba(255, 22, 71, 0.1) !important;
+    border-color: rgba(255, 22, 71, 0.3) !important;
+    color: var(--primary-red) !important;
+    transform: translateY(-2px);
+}
+
+.page-item.active .page-link {
+    background: var(--gradient-red) !important;
+    border-color: var(--primary-red) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(255, 22, 71, 0.3);
+}
+
+/* ========== TABELAS ========== */
+
+.table-dark {
+    background: transparent !important;
+}
+
+.table-dark thead th {
+    background: var(--gradient-dark) !important;
+    border: none !important;
+    border-bottom: 2px solid rgba(255, 22, 71, 0.2) !important;
+    color: #ffffff !important;
+    font-weight: 700;
+    padding: 16px !important;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.table-dark tbody tr {
+    border-bottom: 1px solid rgba(255, 22, 71, 0.08) !important;
+    transition: all 0.3s ease;
+}
+
+.table-dark tbody tr:hover {
+    background: rgba(255, 22, 71, 0.05) !important;
+}
+
+/* ========== MODAL ========== */
+
+.modal-content {
+    background: var(--gradient-card) !important;
+    border: 1px solid rgba(255, 22, 71, 0.2) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 22, 71, 0.15) !important;
+    padding: 24px;
+}
+
+.modal-title {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* ========== DROPDOWN ========== */
+
+.dropdown-menu {
+    background: var(--gradient-card) !important;
+    border: 1px solid rgba(255, 22, 71, 0.2) !important;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    padding: 8px;
+}
+
+.dropdown-item {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 10px 16px;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 22, 71, 0.12) !important;
+    color: var(--primary-red) !important;
+}
+
+/* ========== UTILITIES ========== */
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+p {
+    color: #d1d5db;
+}
+
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+small {
+    color: var(--text-secondary);
+}
+
+/* ========== SCROLLBAR ========== */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--darker-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-red);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-red-hover);
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 768px) {
+    .neomorph-card {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    .raffle-card-img {
+        height: 180px;
+    }
+    
+    .neomorph-button,
+    .neomorph-button-primary {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    
+    .form-control {
+        font-size: 16px !important;
+    }
+}
+
+/* ========== ANIMAÇÕES ========== */
+
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.gradient-animate {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 22, 71, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 22, 71, 0.5);
+    }
+}
+
+.glow-animation {
+    animation: glow-pulse 2s ease-in-out infinite;
+}
